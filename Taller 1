@@ -67,8 +67,21 @@ class Funciones {
     }
 
     boolean esPrimo(int n) {
-        // COMPLETAR
-        return false;
+         boolean res = true;
+
+        if (n==0 || n==1) {
+            res= false;
+        }
+
+        else if (n>3) {
+            for(int i = 4;i<n;i++) {
+                if(n%i == 0) {
+                    res = false;
+                }
+            }
+        }
+        return res; 
+    } 
     }
 
     int sumatoria(int[] numeros) {
