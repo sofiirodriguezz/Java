@@ -1,0 +1,147 @@
+package aed;
+
+import java.util.*;
+
+// Todos los tipos de datos "Comparables" tienen el método compareTo()
+// elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
+public class ABB<T extends Comparable<T>> implements Conjunto<T> {
+    private Nodo raiz;
+    private int cardinal;
+
+    private class Nodo {
+        T valor;
+        Nodo izq;
+        Nodo der;
+        Nodo raiz;
+
+        Nodo(T e) {
+            valor = e;
+            izq = null;
+            der = null;
+            raiz = null;
+        }
+        
+    }
+
+    public ABB() {
+        raiz = null;
+        cardinal = 0;
+    }
+
+    public int cardinal() {
+        return cardinal;
+    
+    }
+
+    public T minimo(){
+        if(raiz == null){
+            return null;
+        }
+        else if(raiz.izq == null){
+            return raiz.valor;
+        } else {
+            Nodo actual = raiz;
+            while(actual.izq != null){
+                actual = raiz.izq;
+            }
+            return raiz.valor;
+        }
+    }
+
+    public T maximo(){
+        if(raiz == null){
+            return null;
+        } else if (raiz.der == null){
+            return raiz.valor;
+        } else {
+            Nodo actual = raiz;
+            while (actual.der != null){
+                actual = actual.der;
+            }
+            return actual.valor;
+        }
+    }
+
+    public void insertar(T elem){
+        Nodo actual = raiz;
+        Nodo nuevo = new Nodo(elem);
+        if(raiz == null){
+            raiz = nuevo;
+            cardinal++;
+        }    
+        else {
+            while(elem.compareTo(actual.valor) != 0){
+                if(elem.compareTo(actual.valor) < 0){
+                    if(actual.izq != null){
+                        actual = actual.izq;
+                    }
+                    else { 
+                        actual.izq = nuevo;
+                        nuevo.raiz = actual;
+                        cardinal++;
+
+                    }
+                }
+                else{
+                    if(actual.der != null){
+                        actual= actual.der;
+                    } 
+                    else {
+                        actual.der = nuevo;
+                        nuevo.raiz= actual;
+                        cardinal++;
+                    }
+            
+            
+                }
+            }
+        
+        }
+    
+    }
+            
+
+    public boolean pertenece(T elem){
+        if(raiz== null){
+            return false;
+        }
+        else{
+            Nodo actual = raiz;
+            while(elem.compareTo(actual.valor) != 0){
+                if(elem.compareTo(actual.valor) < 0 && actual.izq != null){
+                    actual = actual.izq;
+                }
+                else if (elem.compareTo(actual.valor) > 0 && actual.izq != null){
+                    actual = actual.izq;
+                }
+            }
+            
+            
+        }
+    }
+
+    public void eliminar(T elem){
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    public String toString(){
+        throw new UnsupportedOperationException("No implementada aun");
+    }
+
+    private class ABB_Iterador implements Iterador<T> {
+        private Nodo _actual;
+
+        public boolean haySiguiente() {            
+            throw new UnsupportedOperationException("No implementada aun");
+        }
+    
+        public T siguiente() {
+            throw new UnsupportedOperationException("No implementada aun");
+        }
+    }
+
+    public Iterador<T> iterador() {
+        return new ABB_Iterador();
+    }
+
+}
