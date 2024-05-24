@@ -101,20 +101,31 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
             
 
-    public boolean pertenece(T elem){
+     public boolean pertenece(T elem){
         if(raiz== null){
             return false;
         }
         else{
             Nodo actual = raiz;
             while(elem.compareTo(actual.valor) != 0){
-                if(elem.compareTo(actual.valor) < 0 && actual.izq != null){
-                    actual = actual.izq;
+                if(elem.compareTo(actual.valor) < 0 ){
+                    if(actual.izq != null){
+                        actual = actual.izq;
+                    } else{
+                        return false;
+                    }
+                    
                 }
-                else if (elem.compareTo(actual.valor) > 0 && actual.izq != null){
-                    actual = actual.izq;
+                else {
+                    if(actual.der != null){
+                        actual = actual.der;
+                    } else {
+                        return false;
+                    }
                 }
             }
+            return true;
+            
             
             
         }
