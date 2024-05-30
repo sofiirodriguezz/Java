@@ -36,9 +36,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     public T minimo(){
         if(raiz == null){
             return null;
-        }
-        else if(raiz.izq == null){
-            return raiz.valor;
         } else {
             Nodo actual = raiz;
             while(actual.izq != null){
@@ -51,9 +48,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     public T maximo(){
         if(raiz == null){
             return null;
-        } else if (raiz.der == null){
-            return raiz.valor;
-        } else {
+        }  else {
             Nodo actual = raiz;
             while (actual.der != null){
                 actual = actual.der;
