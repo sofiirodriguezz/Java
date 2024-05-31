@@ -127,7 +127,112 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public void eliminar(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo actual = raiz;
+        if(pertenece(elem)){
+            while(elem.compareTo(actual.valor) !=0){
+                if(elem.compareTo(actual.valor)< 0){
+                    actual= actual.izq;
+                } else{
+                    actual= actual.der;
+                }
+            }
+            if(actual.izq == null && actual.der == null){
+                actual= null;
+            } 
+            if(actual.izq == null && actual.der != null){
+                actual = actual.der;
+            } else if(actual.der== null && actual.izq != null){
+                actual = actual.izq;
+            }
+            if(actual.der!= null && actual.izq!=null){
+                if
+            }
+
+        }Nodo actual = raiz;
+        if(pertenece(elem)){
+            while(elem.compareTo(actual.valor) !=0){
+                if(elem.compareTo(actual.valor)< 0){
+                    actual= actual.izq;
+                } else{
+                    actual= actual.der;
+                }
+            }
+            if(actual.izq == null && actual.der == null){
+                actual= null;
+            } 
+            if(actual.izq == null && actual.der != null){
+                actual = actual.der;
+            } else if(actual.der== null && actual.izq != null){
+                actual = actual.izq;
+            }
+            if(actual.der!= null && actual.izq!=null){
+                if
+            }
+
+        }Nodo actual = raiz;
+        if(pertenece(elem)){
+            while(elem.compareTo(actual.valor) !=0){
+                if(elem.compareTo(actual.valor)< 0){
+                    actual= actual.izq;
+                } else{
+                    actual= actual.der;
+                }
+            }
+            if(actual.izq == null && actual.der == null){
+                actual= null;
+            } 
+            if(actual.izq == null && actual.der != null){
+                actual = actual.der;
+            } else if(actual.der== null && actual.izq != null){
+                actual = actual.izq;
+            }
+            if(actual.der!= null && actual.izq!=null){
+                if
+            }
+
+        }Nodo actual = raiz;
+        if(pertenece(elem)){
+            while(elem.compareTo(actual.valor) !=0){
+                if(elem.compareTo(actual.valor)< 0){
+                    actual= actual.izq;
+                } else{
+                    actual= actual.der;
+                }
+            }
+            if(actual.izq == null && actual.der == null){
+                actual= null;
+            } 
+            if(actual.izq == null && actual.der != null){
+                actual = actual.der;
+            } else if(actual.der== null && actual.izq != null){
+                actual = actual.izq;
+            }
+            if(actual.der!= null && actual.izq!=null){
+                if
+            }
+
+        }Nodo actual = raiz;
+        if(pertenece(elem)){
+            while(elem.compareTo(actual.valor) !=0){
+                if(elem.compareTo(actual.valor)< 0){
+                    actual= actual.izq;
+                } else{
+                    actual= actual.der;
+                }
+            }
+            if(actual.izq == null && actual.der == null){
+                actual= null;
+            } 
+            if(actual.izq == null && actual.der != null){
+                actual = actual.der;
+            } else if(actual.der== null && actual.izq != null){
+                actual = actual.izq;
+            }
+            if(actual.der!= null && actual.izq!=null){
+                if
+            }
+
+        };
     }
 
     public String toString(){
