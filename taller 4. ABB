@@ -39,7 +39,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         } else {
             Nodo actual = raiz;
             while(actual.izq != null){
-                actual = raiz.izq;
+                actual = actual.izq;
             }
             return actual.valor;
         }
