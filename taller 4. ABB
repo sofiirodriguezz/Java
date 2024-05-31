@@ -178,6 +178,7 @@ private Nodo nodoMinimo(Nodo n){
             n = n.izq;
         }
         return n;
+}
 
         
             
@@ -186,14 +187,33 @@ private Nodo nodoMinimo(Nodo n){
     }
 
     private class ABB_Iterador implements Iterador<T> {
-        private Nodo _actual;
+        private Nodo _actual= nodoMinimo(raiz);
+
+        private Nodo nodoMinimo(Nodo n){
+            while(n.izq !=null){
+                n = n.izq;
+            }
+            return n;
+        }
 
         public boolean haySiguiente() {            
-            throw new UnsupportedOperationException("No implementada aun");
+            return _actual != null;
         }
     
         public T siguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
+            T res = _actual.valor;
+            _actual = sucesor(_actual);
+
+           return res;
+        }
+
+        private Nodo sucesor(Nodo n){
+            if(_actual.der != null){
+                return nodoMinimo(_actual.der);
+            } else{
+                Nodo antecesor= _actual.raiz;
+                if()
+            }
         }
     }
 
