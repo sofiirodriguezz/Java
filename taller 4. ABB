@@ -137,16 +137,42 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
                 }
             }
             if(actual.izq == null && actual.der == null){
-                actual= null;
+                if(actual.raiz.der == actual){
+                    actual.raiz.der = null;
+                } else if(actual.raiz.izq == actual){
+                    actual.raiz.izq=null;
+                }
             } 
             if(actual.izq == null && actual.der != null){
-                actual = actual.der;
+                if(actual.raiz.der == actual){
+                    actual.raiz.der = actual.der;
+                } else if(actual.raiz.izq == actual){
+                    actual.raiz.izq = actual.der;
+                }
             } else if(actual.der== null && actual.izq != null){
-                actual = actual.izq;
+                if(actual.raiz.der == actual){
+                    actual.raiz.der= actual.izq;
+                } else if(actual.raiz.izq==actual){
+                    actual.raiz.izq= actual.izq;
             }
             if(actual.der!= null && actual.izq!=null){
-                if
+               Nodo sucesor = nodoMinimo(actual.der);
+               if(sucesor.izq != null && sucesor.der == null){
+                actual.valor= sucesor.valor;
+                sucesor.raiz = sucesor.izq;
+               } else if(sucesor.der!=null && sucesor.izq == null){
+                actual.valor=sucesor.valor;
+                sucesor.raiz=sucesor.der;
+               }
+               if(sucesor.izq==null && sucesor.der== null){
+                actual.valor=sucesor.valor;
+                sucesor.raiz=null;
+               }
             }
+        }
+        }
+        cardinal--;
+    }
 
         
             
