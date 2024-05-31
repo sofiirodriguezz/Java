@@ -173,6 +173,11 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         }
         cardinal--;
     }
+private Nodo nodoMinimo(Nodo n){
+        while(n.izq !=null){
+            n = n.izq;
+        }
+        return n;
 
         
             
