@@ -2,6 +2,7 @@ package aed;
 
 import java.util.*;
 
+
 // Todos los tipos de datos "Comparables" tienen el método compareTo()
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
@@ -48,7 +49,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     public T maximo(){
         if(raiz == null){
             return null;
-        }  else {
+        } else {
             Nodo actual = raiz;
             while (actual.der != null){
                 actual = actual.der;
@@ -126,65 +127,62 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         }
     }
 
-    public void eliminar(T elem){
-        Nodo actual = raiz;
-        if(pertenece(elem)){
-            while(elem.compareTo(actual.valor) !=0){
-                if(elem.compareTo(actual.valor)< 0){
-                    actual= actual.izq;
-                } else{
-                    actual= actual.der;
-                }
-            }
-            if(actual.izq == null && actual.der == null){
-                if(actual.raiz.der == actual){
-                    actual.raiz.der = null;
-                } else if(actual.raiz.izq == actual){
-                    actual.raiz.izq=null;
-                }
-            } 
-            if(actual.izq == null && actual.der != null){
-                if(actual.raiz.der == actual){
-                    actual.raiz.der = actual.der;
-                } else if(actual.raiz.izq == actual){
-                    actual.raiz.izq = actual.der;
-                }
-            } else if(actual.der== null && actual.izq != null){
-                if(actual.raiz.der == actual){
-                    actual.raiz.der= actual.izq;
-                } else if(actual.raiz.izq==actual){
-                    actual.raiz.izq= actual.izq;
-            }
-            if(actual.der!= null && actual.izq!=null){
-               Nodo sucesor = nodoMinimo(actual.der);
-               if(sucesor.izq != null && sucesor.der == null){
-                actual.valor= sucesor.valor;
-                sucesor.raiz = sucesor.izq;
-               } else if(sucesor.der!=null && sucesor.izq == null){
-                actual.valor=sucesor.valor;
-                sucesor.raiz=sucesor.der;
-               }
-               if(sucesor.izq==null && sucesor.der== null){
-                actual.valor=sucesor.valor;
-                sucesor.raiz=null;
-               }
-            }
+    public void eliminar(T elem) {
+        if (pertenece(elem)) {
+            raiz = eliminarRecursivo(raiz, elem);
+            cardinal--;
         }
-        }
-        cardinal--;
     }
-private Nodo nodoMinimo(Nodo n){
-        while(n.izq !=null){
-            n = n.izq;
-        }
-        return n;
-}
 
-        
-            
-    public String toString(){
-        throw new UnsupportedOperationException("No implementada aun");
+    private Nodo eliminarRecursivo(Nodo nodo, T elem) {
+        if (nodo == null)
+            return null;
+        if (elem.compareTo(nodo.valor) < 0) {
+            nodo.izq = eliminarRecursivo(nodo.izq, elem);
+        } else if (elem.compareTo(nodo.valor) > 0) {
+            nodo.der = eliminarRecursivo(nodo.der, elem);
+        } else {
+            if (nodo.izq == null)
+                return nodo.der;
+            else if (nodo.der == null)
+                return nodo.izq;
+            nodo.valor = nodominimo(nodo.der);
+            nodo.der = eliminarRecursivo(nodo.der, nodo.valor);
+        }
+        return nodo;
     }
+
+    private T nodominimo(Nodo nodo) {
+        T min = nodo.valor;
+        while (nodo.izq != null) {
+            min = nodo.izq.valor;
+            nodo = nodo.izq;
+        }
+        return min;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        inorden(raiz, sb);
+        if(sb.length()>1){
+            sb.setLength(sb.length()-1);
+        }
+        sb.append("}");
+        return sb.toString();
+        
+    }
+
+    private void inorden(Nodo raiz, StringBuilder sb) {
+        if (raiz != null) {
+            inorden(raiz.izq, sb);
+            sb.append(raiz.valor).append(",");
+            inorden(raiz.der, sb);
+        }
+    }
+
 
     private class ABB_Iterador implements Iterador<T> {
         private Nodo _actual= nodoMinimo(raiz);
